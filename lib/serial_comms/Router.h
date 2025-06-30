@@ -10,14 +10,17 @@
 #ifndef TADPOLE_SOFTWARE_ROUTER_H
 #define TADPOLE_SOFTWARE_ROUTER_H
 
+#include "PlatformBridge.h"
+
+#if defined(TARGET_TEENY41) || defined(TARGET_NATIVE)
 #include <vector>
 #include <string>
 #include <functional>
-#include <SD.h>
+#endif
 
-using namespace std;
+using namespace std; // remove ts
 
-#define COMMS_SERIAL Serial
+#define COMMS_SERIAL PlatformBridge::Serial
 #define COMMS_RATE 9600
 
 struct func;
@@ -30,8 +33,6 @@ void begin();
 // info sends a string & newline over serial
 void info(const char *msg);
 void info_no_newline(const char *msg);
-inline void info(const String &msg) { info(msg.c_str()); }
-inline void info_no_newline(const String &msg) { info_no_newline(msg.c_str()); }
 inline void info(const std::string &msg) { info(msg.c_str()); }
 inline void info_no_newline(const std::string &msg) { info_no_newline(msg.c_str()); }
 
@@ -43,9 +44,6 @@ void send(char msg[], unsigned int len);
 // the caller is responsible for freeing the memory of the message
 void receive(char msg[], unsigned int len);
 
-// reads a message from the serial port into a string and returns it
-String read(unsigned int len);
-
 // add registers a new function to the router
 void add(func f);
 
@@ -56,6 +54,14 @@ void add(func f);
 
 // for help function
 void print_all_cmds();
+
+#if defined(TARGET_TEENY41)
+inline void info(const String &msg) { info(msg.c_str()); }
+inline void info_no_newline(const String &msg) { info_no_newline(msg.c_str()); }
+
+// reads a message from the serial port into a string and returns it
+String read(unsigned int len);
+#endif
 
 }; // namespace Router
 

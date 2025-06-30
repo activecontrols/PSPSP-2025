@@ -1,25 +1,32 @@
+#include "PlatformBridge.h"
+#include "SDCard.h"
+#include "Router.h"
+
+#if defined(TARGET_TEENY41)
 //
 // Created by Ishan Goel on 6/11/24.
 //
 
 #include <SD.h>
-#include "SDCard.h"
-#include "Router.h"
+#endif
 
-boolean SDCard::begin() {
-  if (!SD.begin(BUILTIN_SDCARD))
+bool SDCard::begin() {
+  if (!PlatformBridge::SD.begin(BUILTIN_SDCARD))
     return false;
+    /*
   Router::add({ls, "ls"});
   Router::add({rm, "rm"});
   Router::add({cat, "cat"});
   Router::add({auto_cat, "auto_cat"});
+  */
   return true;
 }
 
-File SDCard::open(const char *filename, char mode) {
-  return SD.open(filename, mode);
+PlatformBridge::File SDCard::open(const char *filename, char mode) {
+  return PlatformBridge::SD.open(filename, mode);
 }
 
+/*
 void SDCard::ls() {
   String result = "";
   File root = SD.open("/");
@@ -46,7 +53,7 @@ void SDCard::rm() {
   }
 }
 
-String SDCard::get_next_safe_name(const char *filename) {
+const char* SDCard::get_next_safe_name(const char *filename) {
   for (int i = 0; i < 100; i++) {
     String filename_str = filename;
     filename_str += i;
@@ -58,7 +65,7 @@ String SDCard::get_next_safe_name(const char *filename) {
 
   String filename_str = filename;
   filename_str += "_E.CSV";
-  return filename_str;
+  return filename_str.c_str();
 }
 
 // issue: receiver may not know when to stop reading. send size beforehand if absolutely needed.
@@ -91,3 +98,4 @@ void SDCard::auto_cat() {
   }
   Serial.println("done");
 }
+*/
