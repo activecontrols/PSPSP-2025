@@ -3,12 +3,6 @@
 
 #include "PlatformBridge.h"
 
-#if defined(TARGET_TEENY41)
-#include <Arduino.h>
-#elif defined(TARGET_NATIVE)
-#include <iostream>
-#include <cstring>
-#endif
 
 /*
  * CString.h
@@ -23,7 +17,7 @@
 
 namespace cstring {
     inline void print(const char* str) {
-        PlatformBridge::Serial.println(str);
+        Serial.println(str);
     }
 
     int append(char* str, size_t bufferLen, const char* src);

@@ -14,7 +14,7 @@
 class SDCard {
 public:
   static bool begin();
-  static PlatformBridge::File open(const char *filename, char mode);
+  static File open(const char *filename, char mode);
   static const char* get_next_safe_name(const char *filename);
 
 private:

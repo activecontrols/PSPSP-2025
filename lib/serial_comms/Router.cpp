@@ -11,7 +11,7 @@
 #define COMMAND_BUFFER_SIZE (200)
 
 namespace Router {
-PlatformBridge::File comms_log_file;
+File comms_log_file;
 
 CString<COMMAND_BUFFER_SIZE> commandBuffer;
 
@@ -41,7 +41,7 @@ void begin() {
     Router::info("SD card not found.");
     while (true) {
       Router::info("Reboot once SD card inserted...");
-      PlatformBridge::delay(1000);
+      delay(1000);
     }
   }
 }
@@ -53,24 +53,24 @@ void info(const char *msg) {
 }
 
 void info_no_newline(const char *msg) {
-  COMMS_SERIAL.println(msg);
+  COMMS_SERIAL.print(msg);
   //comms_log_file.print(msg);
   //comms_log_file.flush();
 }
 
-/*
 String read(unsigned int len) {
   String s = COMMS_SERIAL.readStringUntil('\n', len);
-  s.trim(); // remove leading/trailing whitespace or newline
+  //s.trim(); // remove leading/trailing whitespace or newline
 
+  /*
   comms_log_file.print("<");
   comms_log_file.print(s);
   comms_log_file.print(">\n");
   comms_log_file.flush();
+  */
 
   return s;
 }
-*/
 
 void send(char msg[], unsigned int len) {
   //COMMS_SERIAL.write(msg, len);

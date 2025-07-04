@@ -11,27 +11,26 @@
 #endif
 
 bool SDCard::begin() {
-  if (!PlatformBridge::SD.begin(BUILTIN_SDCARD))
+  if (!SD.begin(BUILTIN_SDCARD))
     return false;
-    /*
+
   Router::add({ls, "ls"});
   Router::add({rm, "rm"});
   Router::add({cat, "cat"});
   Router::add({auto_cat, "auto_cat"});
-  */
+
   return true;
 }
 
-PlatformBridge::File SDCard::open(const char *filename, char mode) {
-  return PlatformBridge::SD.open(filename, mode);
+File SDCard::open(const char *filename, char mode) {
+  return SD.open(filename, mode);
 }
 
-/*
 void SDCard::ls() {
   String result = "";
-  File root = SD.open("/");
+  File root = SD.open("."); // /
   while (true) {
-    File entry = root.openNextFile();
+    ::File entry = root.openNextFile();
     if (!entry) {
       break;
     }
@@ -98,4 +97,3 @@ void SDCard::auto_cat() {
   }
   Serial.println("done");
 }
-*/

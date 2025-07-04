@@ -20,7 +20,7 @@
 
 using namespace std; // remove ts
 
-#define COMMS_SERIAL PlatformBridge::Serial
+#define COMMS_SERIAL Serial
 #define COMMS_RATE 9600
 
 struct func;
@@ -55,12 +55,11 @@ void add(func f);
 // for help function
 void print_all_cmds();
 
+// reads a message from the serial port into a string and returns it
+String read(unsigned int len);
 #if defined(TARGET_TEENY41)
 inline void info(const String &msg) { info(msg.c_str()); }
 inline void info_no_newline(const String &msg) { info_no_newline(msg.c_str()); }
-
-// reads a message from the serial port into a string and returns it
-String read(unsigned int len);
 #endif
 
 }; // namespace Router
