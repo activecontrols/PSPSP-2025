@@ -156,7 +156,7 @@ public:
 
 	File() = default;
 
-	File(const char* path_str, char mode = FILE_WRITE) {
+	File(const char* path_str, char mode = FILE_WRITE, bool create_if_not_already_existing = true) {
 		this->path = std::filesystem::path(BUILTIN_SDCARD_DIR);
 		this->path /= path_str + (path_str[0] == '/' ? 1 : 0);
 		this->name_str = this->path.filename().string();
@@ -168,8 +168,10 @@ public:
 		else if (mode == FILE_WRITE)
 				openMode |= std::ios::in | std::ios::out;
 
-		std::ofstream createFile(this->path);
-		createFile.close();
+		if (create_if_not_already_existing) {
+			std::ofstream createFile(this->path);
+			createFile.close();
+		}
 
 		this->stream.open(this->path, openMode);
 
@@ -270,7 +272,7 @@ public:
 	}
 
 	File open(const char* path, char mode = FILE_WRITE) {
-		return File(path, mode);
+		return File(path, mode, true);
 	}
 
 	bool exists(const char* file_path) {
