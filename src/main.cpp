@@ -1,12 +1,6 @@
 #include "PlatformBridge.h"
 #include "Router.h"
 
-#if defined(TARGET_TEENY41)
-#include <Arduino.h>
-#elif defined(TARGET_NATIVE)
-#include <iostream>
-#endif
-
 void ping() {
   Router::info("pong");
 }
@@ -38,9 +32,4 @@ void loop() {
   Router::run(); // loop only runs once, since there is an internal loop in Router::run()
 }
 
-#if defined(TARGET_NATIVE)
-int main() {
-  setup();
-  loop();
-}
-#endif
+PLATFORM_INIT();

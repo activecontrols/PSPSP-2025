@@ -2,13 +2,9 @@
 #include "SDCard.h"
 #include "Router.h"
 
-#if defined(TARGET_TEENY41)
 //
 // Created by Ishan Goel on 6/11/24.
 //
-
-#include <SD.h>
-#endif
 
 bool SDCard::begin() {
   if (!SD.begin(BUILTIN_SDCARD))
@@ -28,9 +24,9 @@ File SDCard::open(const char *filename, char mode) {
 
 void SDCard::ls() {
   String result = "";
-  File root = SD.open("."); // /
+  File root = SD.open("/");
   while (true) {
-    ::File entry = root.openNextFile();
+    File entry = root.openNextFile();
     if (!entry) {
       break;
     }

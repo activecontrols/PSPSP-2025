@@ -12,14 +12,6 @@
 
 #include "PlatformBridge.h"
 
-#if defined(TARGET_TEENY41) || defined(TARGET_NATIVE)
-#include <vector>
-#include <string>
-#include <functional>
-#endif
-
-using namespace std; // remove ts
-
 #define COMMS_SERIAL Serial
 #define COMMS_RATE 9600
 

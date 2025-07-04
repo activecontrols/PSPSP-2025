@@ -16,7 +16,7 @@ File comms_log_file;
 CString<COMMAND_BUFFER_SIZE> commandBuffer;
 
 namespace {
-vector<func> funcs;
+std::vector<func> funcs;
 
 void readCommand() {
   // read until newline char or 200 characters (hopefully none of our funcs have names that long lol)
@@ -24,10 +24,10 @@ void readCommand() {
   commandBuffer.str[COMMAND_BUFFER_SIZE - 1] = '\0'; // null terminate
   commandBuffer.trim();                              // remove leading/trailing whitespace or newline
 
-  //comms_log_file.print("<");
-  //comms_log_file.print(commandBuffer.str);
-  //comms_log_file.print(">\n");
-  //comms_log_file.flush();
+  comms_log_file.print("<");
+  comms_log_file.print(commandBuffer.str);
+  comms_log_file.print(">\n");
+  comms_log_file.flush();
 }
 } // namespace
 
@@ -48,32 +48,30 @@ void begin() {
 
 void info(const char *msg) {
   COMMS_SERIAL.println(msg);
-  //comms_log_file.println(msg);
-  //comms_log_file.flush();
+  comms_log_file.println(msg);
+  comms_log_file.flush();
 }
 
 void info_no_newline(const char *msg) {
   COMMS_SERIAL.print(msg);
-  //comms_log_file.print(msg);
-  //comms_log_file.flush();
+  comms_log_file.print(msg);
+  comms_log_file.flush();
 }
 
 String read(unsigned int len) {
   String s = COMMS_SERIAL.readStringUntil('\n', len);
-  //s.trim(); // remove leading/trailing whitespace or newline
+  s.trim(); // remove leading/trailing whitespace or newline
 
-  /*
   comms_log_file.print("<");
   comms_log_file.print(s);
   comms_log_file.print(">\n");
   comms_log_file.flush();
-  */
 
   return s;
 }
 
 void send(char msg[], unsigned int len) {
-  //COMMS_SERIAL.write(msg, len);
+  COMMS_SERIAL.write(msg, len);
 }
 
 void receive(char msg[], unsigned int len) {
