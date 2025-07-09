@@ -1,7 +1,0 @@
-Controller started.
-<ls>
-log.txt 
-<cat log.txt>
-Command not found.
-<cat>
-Enter filename: <log.txt>

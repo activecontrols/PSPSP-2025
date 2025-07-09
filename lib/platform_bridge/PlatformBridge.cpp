@@ -159,6 +159,16 @@ String File::readStringUntil(char terminator, size_t length) {
 
 SDClass::SDClass() {}
 bool SDClass::begin(uint8_t csPin) {
+	if (!std::filesystem::is_directory(BUILTIN_SDCARD_DIR)) {
+		try {
+			std::filesystem::create_directory(BUILTIN_SDCARD_DIR);
+		}
+		catch (const std::exception& exc) {
+			std::cout << "Failed to initialize BUILTIN_SDCARD_DIR and start the program becuase of the following error:" << exc.what() << std::endl;
+			return false;
+		}
+	}
+
 	return true;
 }
 File SDClass::open(const char* path_str, char mode) {
@@ -185,15 +195,6 @@ void setup();
 void loop();
 
 int main() {
-	if (!std::filesystem::is_directory(BUILTIN_SDCARD_DIR)) {
-		try {
-			std::filesystem::create_directory(BUILTIN_SDCARD_DIR);
-		}
-		catch (const std::exception& exc) {
-			std::cout << "Failed to initialize BUILTIN_SDCARD_DIR and start the program becuase of the following error:" << exc.what() << std::endl;
-			return 1;
-		}
-	}
 	setup();
 	while (true)
 		loop();
