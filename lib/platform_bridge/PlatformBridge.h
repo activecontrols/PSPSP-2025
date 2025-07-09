@@ -108,6 +108,7 @@ public:
 	size_t readBytes(char* buffer, size_t length) {
 		size_t count = 0;
 		for (char c; count < length && std::cin.get(c); buffer[count++] = c);
+		buffer[count] = '\0';
 
 		return count;
 	}
@@ -125,6 +126,7 @@ public:
 	size_t readBytesUntil(char terminator, char* buffer, size_t length) {
 		size_t count = 0;
 		for (char c; count < length && std::cin.get(c) && c != terminator; buffer[count++] = c);
+		buffer[count] = '\0';
 
 		return count;
 	}
@@ -229,6 +231,7 @@ public:
 	size_t readBytes(char* buffer, size_t length) {
 		size_t count = 0;
 		for (char c; count < length && this->stream.get(c); buffer[count++] = c);
+		buffer[count] = '\0';
 
 		return count;
 	}
@@ -246,6 +249,7 @@ public:
 	size_t readBytesUntil(char terminator, char* buffer, size_t length, std::istream& stream = std::cin) {
 		size_t count = 0;
 		for (char c; count < length && this->stream.get(c) && c != terminator; buffer[count++] = c);
+		buffer[count] = '\0';
 
 		return count;
 	}
