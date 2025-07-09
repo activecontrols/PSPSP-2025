@@ -31,5 +31,3 @@ void setup() {
 void loop() {
   Router::run(); // loop only runs once, since there is an internal loop in Router::run()
 }
-
-PLATFORM_INIT();
