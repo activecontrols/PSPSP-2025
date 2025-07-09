@@ -1,6 +1,6 @@
 #include "PlatformBridge.h"
 
-#if defined(TARGET_TEENY41)
+#if defined(TARGET_TEENSY41)
 
 
 #elif defined(TARGET_NATIVE)

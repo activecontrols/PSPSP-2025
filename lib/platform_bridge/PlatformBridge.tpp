@@ -1,7 +1,7 @@
 #ifndef PLATFORM_BRIDGE_TEMPLATE
 #define PLATFORM_BRIDGE_TEMPLATE
 
-#if defined(TARGET_TEENY41)
+#if defined(TARGET_TEENSY41)
 
 
 #elif defined(TARGET_NATIVE)

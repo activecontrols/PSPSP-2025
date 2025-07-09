@@ -1,7 +1,7 @@
 #ifndef PLATFORM_BRIDGE_H
 #define PLATFORM_BRIDGE_H
 
-#if defined(TARGET_TEENY41)
+#if defined(TARGET_TEENSY41)
 #include <Arduino.h>
 #include <SD.h>
 #elif defined(TARGET_NATIVE)
@@ -14,7 +14,7 @@
 #include <cstring>
 #endif
 
-#if defined(TARGET_TEENY41) || defined(TARGET_NATIVE)
+#if defined(TARGET_TEENSY41) || defined(TARGET_NATIVE)
 #include <vector>
 #include <string>
 #include <functional>
@@ -32,7 +32,7 @@
 // Make everything use CStrings if possible, but otherwise compensate with std::string derived class (yes ik it's bad practice)
 // Move to multithreading (complete data no pausing unless explicitly required otherwise use fbo like buffer switching system and deprioritizing recentness of data)
 
-#if defined(TARGET_TEENY41)
+#if defined(TARGET_TEENSY41)
 
 // Not required, but list the portions of the APIs used here so we can keep track of things and move it to another namespace if needed
 using ::File;
