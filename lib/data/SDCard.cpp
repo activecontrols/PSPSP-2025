@@ -6,7 +6,7 @@
 // Created by Ishan Goel on 6/11/24.
 //
 
-bool SDCard::begin() {
+boolean SDCard::begin() {
   if (!SD.begin(BUILTIN_SDCARD))
     return false;
 

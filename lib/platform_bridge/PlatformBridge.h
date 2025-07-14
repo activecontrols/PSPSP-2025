@@ -43,6 +43,8 @@ using ::String;
 
 #elif defined(TARGET_NATIVE)
 
+typedef bool boolean;
+
 class String : public std::string {
 public:
 	String();
@@ -54,6 +56,8 @@ public:
 };
 
 void delay(unsigned long ms);
+extern std::chrono::time_point<std::chrono::high_resolution_clock> start_time;
+unsigned long millis();
 
 class usb_serial_class {
 public:

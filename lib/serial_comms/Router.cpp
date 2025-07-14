@@ -20,8 +20,8 @@ std::vector<func> funcs;
 
 void readCommand() {
   // read until newline char or 200 characters (hopefully none of our funcs have names that long lol)
-  commandBuffer.str[COMMS_SERIAL.readBytesUntil('\n', commandBuffer.str, COMMAND_BUFFER_SIZE - 1)] = '\0';
-  //commandBuffer.str[COMMAND_BUFFER_SIZE - 1] = '\0'; // null terminate
+  COMMS_SERIAL.readBytesUntil('\n', commandBuffer.str, COMMAND_BUFFER_SIZE - 1);
+  commandBuffer.str[COMMAND_BUFFER_SIZE - 1] = '\0'; // null terminate
   commandBuffer.trim();                              // remove leading/trailing whitespace or newline
 
   comms_log_file.print("<");
