@@ -55,9 +55,11 @@ public:
 	void trim();
 };
 
-void delay(unsigned long ms);
 extern std::chrono::time_point<std::chrono::high_resolution_clock> start_time;
+void delay(unsigned long ms);
+void delayMicroseconds(unsigned long ms);
 unsigned long millis();
+unsigned long micros();
 
 class usb_serial_class {
 public:
