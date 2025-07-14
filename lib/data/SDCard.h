@@ -9,13 +9,13 @@
 #ifndef TADPOLE_SOFTWARE_SDCARD_H
 #define TADPOLE_SOFTWARE_SDCARD_H
 
-#include <SD.h>
+#include "PlatformBridge.h"
 
 class SDCard {
 public:
-  static boolean begin();
+  static bool begin();
   static File open(const char *filename, char mode);
-  static String get_next_safe_name(const char *filename);
+  static const char* get_next_safe_name(const char *filename);
 
 private:
   // used by comms

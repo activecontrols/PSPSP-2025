@@ -1,12 +1,12 @@
-//
-// Created by Ishan Goel on 6/9/24.
-// Maintained by Ishan Goel and Vincent Palmerio
-//
-
 #include "Router.h"
 
 #include "CString.h"
 #include "SDCard.h"
+
+//
+// Created by Ishan Goel on 6/9/24.
+// Maintained by Ishan Goel and Vincent Palmerio
+//
 
 #define COMMAND_BUFFER_SIZE (200)
 
@@ -16,7 +16,7 @@ File comms_log_file;
 CString<COMMAND_BUFFER_SIZE> commandBuffer;
 
 namespace {
-vector<func> funcs;
+std::vector<func> funcs;
 
 void readCommand() {
   // read until newline char or 200 characters (hopefully none of our funcs have names that long lol)
@@ -109,4 +109,5 @@ void print_all_cmds() {
     info(f.name);
   }
 }
+
 } // namespace Router

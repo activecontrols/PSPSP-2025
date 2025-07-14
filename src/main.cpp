@@ -1,5 +1,4 @@
-#include <Arduino.h>
-
+#include "PlatformBridge.h"
 #include "Router.h"
 
 void ping() {
@@ -13,6 +12,7 @@ void help() {
 void setup() {
   Router::begin();
   Router::info("Controller started.");
+
 
   Router::add({ping, "ping"}); // example registration
   Router::add({help, "help"});
