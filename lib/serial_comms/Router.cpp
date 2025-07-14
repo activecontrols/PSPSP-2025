@@ -58,6 +58,14 @@ void info_no_newline(const char *msg) {
   comms_log_file.flush();
 }
 
+void send(char msg[], unsigned int len) {
+  COMMS_SERIAL.write(msg, len);
+}
+
+void receive(char msg[], unsigned int len) {
+  COMMS_SERIAL.readBytes(msg, len);
+}
+
 String read(unsigned int len) {
   String s = COMMS_SERIAL.readStringUntil('\n', len);
   s.trim(); // remove leading/trailing whitespace or newline
@@ -68,14 +76,6 @@ String read(unsigned int len) {
   comms_log_file.flush();
 
   return s;
-}
-
-void send(char msg[], unsigned int len) {
-  COMMS_SERIAL.write(msg, len);
-}
-
-void receive(char msg[], unsigned int len) {
-  COMMS_SERIAL.readBytes(msg, len);
 }
 
 void add(func f) {
