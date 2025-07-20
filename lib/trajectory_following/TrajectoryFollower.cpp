@@ -97,6 +97,7 @@ void arm() {
     return;
   }
 
+  // TODO: Add code to execute followPositionLerpCurve()
   // Loader::header.is_thrust ? followThrustLerpCurve(lox_start, ipa_start) : followAngleLerpCurve();
 
   Router::info("Finished following curve!");
