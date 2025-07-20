@@ -4,20 +4,20 @@
 
 #include <algorithm>
 #include "PID.h"
+#include "PlatformBridge.h"
 
 PID::PID(double kp, double ki, double kd, double min, double max):
-    Kp(kp), Ki(ki), Kd(kd), Min(min), Max(max), LastErr(0), IntSum(0), LastTime(std::chrono::milliseconds(-1))
+    Kp(kp), Ki(ki), Kd(kd), Min(min), Max(max), LastErr(0), IntSum(0), LastTime(-1)
 {}
 
 double PID::Calculate(double setPoint, double processVar) {
-    auto now = std::chrono::high_resolution_clock::now();
-    auto epoch = std::chrono::duration<double, std::milli>(now.time_since_epoch());
+    long long epoch = millis();
 
-    if (LastTime.count() == -1) {
+    if (LastTime == -1) {
         LastTime = epoch;
     }
 
-    double dt = (epoch.count() - LastTime.count()) / 1000;
+    double dt = (epoch - LastTime) / 1000;
     double Err = setPoint - processVar;
     IntSum += Err * dt;
 
@@ -40,6 +40,6 @@ double PID::Calculate(double setPoint, double processVar) {
 void PID::Reset() {
     LastErr = 0;
     IntSum = 0;
-    LastTime = std::chrono::milliseconds(-1);
+    LastTime = -1;
 }
 

@@ -18,7 +18,7 @@ class PID {
     private:
         double Kp, Ki, Kd, Min, Max;
         double LastErr, IntSum;
-        std::chrono::duration<double, std::milli> LastTime;
+        long long LastTime;
 };
 
 #endif
