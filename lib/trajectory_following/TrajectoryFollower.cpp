@@ -79,11 +79,6 @@ void arm() {
     return;
   }
 
-  if (!PT::zeroed_since_boot) {
-    Router::info("ARMING FAILURE: pt boards have not been zeroed.");
-    return;
-  }
-
   // filenames use DOS 8.3 standard
   Router::info_no_newline("Enter log filename (1-8 chars + '.' + 3 chars): ");
   String log_file_name = Router::read(50);
