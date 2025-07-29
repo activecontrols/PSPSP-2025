@@ -1,6 +1,7 @@
 #include "TrajectoryFollower.h"
 
 #include "TrajectoryLogger.h"
+#include "Loader.h"
 #include "SDCard.h"
 #include "Router.h"
 // #include "Loader.h"
@@ -33,7 +34,7 @@ float lerp(float a, float b, float t0, float t1, float t) {
  * Follows a trajectory curve by interpolating between position values.
  */
 void followPositionLerpCurve() {
-  lerp_point_pos *lpc = Loader::lerp_position_curve;
+  lerp_point_pos *lpc = Loader::lerp_pos_curve;
   elapsedMicros timer = elapsedMicros();
   unsigned long lastlog = timer;
   unsigned long lastloop = timer;
@@ -41,7 +42,7 @@ void followPositionLerpCurve() {
   long counter = 0;
 
   for (int i = 0; i < Loader::header.num_points - 1; i++) {
-    while (timer / 1000000.0 < lac[i + 1].time) {
+    while (timer / 1000000.0 < lpc[i + 1].time) {
       float seconds = timer / 1000000.0;
       float x_pos = lerp(lpc[i].x, lpc[i + 1].x, lpc[i].time, lpc[i + 1].time, seconds);
       float y_pos = lerp(lpc[i].y, lpc[i + 1].y, lpc[i].time, lpc[i + 1].time, seconds);
