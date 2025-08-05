@@ -5,6 +5,7 @@
 #include "Loader.h"
 #include "Router.h"
 #include "SDCard.h"
+#include "PlatformBridge.h"
 
 trajectory_header Loader::header;
 lerp_point_pos *Loader::lerp_pos_curve;
