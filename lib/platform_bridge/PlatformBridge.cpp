@@ -5,6 +5,11 @@
 
 #elif defined(TARGET_NATIVE)
 
+void* extmem_malloc(size_t size) { return malloc(size); }
+void extmem_free(void *ptr) { free(ptr); }
+void* extmem_calloc(size_t nmemb, size_t size) { return calloc(nmemb, size); }
+void* extmem_realloc(void *ptr, size_t size) { return realloc(ptr, size); }
+
 String::String() : std::string() {}
 String::String(const std::string& str) : std::string(str) {}
 String::String(const char* s) : std::string(s) {}
@@ -142,12 +147,12 @@ size_t File::write(const char* buffer, size_t length) {
 	return this->stream.good() ? length : 0;
 }
 int File::read() {
-	char* c = { '\0' };
+	char c[] = { '\0' };
 	this->readBytes(c, 1);
 	return static_cast<int>(c[0]);
 }
 size_t File::read(void* buffer, size_t length) {
-	return this->readBytes(buffer, length);
+	return this->readBytes(static_cast<char*>(buffer), length);
 }
 size_t File::readBytes(char* buffer, size_t length) {
 	size_t count = 0;

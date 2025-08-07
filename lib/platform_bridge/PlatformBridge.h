@@ -31,7 +31,6 @@
 // add csv and implement for tadpole sensors
 // Make everything use CStrings if possible, but otherwise compensate with std::string derived class (yes ik it's bad practice)
 // Move to multithreading (complete data no pausing unless explicitly required otherwise use fbo like buffer switching system and deprioritizing recentness of data)
-// add read write to File and the alloc functions
 
 #if defined(TARGET_TEENSY41)
 
@@ -44,10 +43,10 @@ using ::String;
 
 #elif defined(TARGET_NATIVE)
 
-void* extmem_malloc(size_t size) { return malloc(size); }
-void extmem_free(void *ptr) { free(ptr); }
-void* extmem_calloc(size_t nmemb, size_t size) { return calloc(nmemb, size); }
-void* extmem_realloc(void *ptr, size_t size) { return realloc(ptr, size); }
+void* extmem_malloc(size_t size);
+void extmem_free(void *ptr);
+void* extmem_calloc(size_t nmemb, size_t size);
+void* extmem_realloc(void *ptr, size_t size);
 
 typedef bool boolean;
 
@@ -114,8 +113,8 @@ public:
 	void flush();
 	size_t write(char value);
 	size_t write(const char* buffer, size_t length);
-	char read();
-	void read(void* buffer, size_t length);
+	int read();
+	size_t read(void* buffer, size_t length);
 	size_t readBytes(char* buffer, size_t length);
 	String readString(size_t length = 120);
 	size_t readBytesUntil(char terminator, char* buffer, size_t length, std::istream& stream = std::cin);
