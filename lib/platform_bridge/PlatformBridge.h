@@ -43,6 +43,11 @@ using ::String;
 
 #elif defined(TARGET_NATIVE)
 
+void* extmem_malloc(size_t size);
+void extmem_free(void *ptr);
+void* extmem_calloc(size_t nmemb, size_t size);
+void* extmem_realloc(void *ptr, size_t size);
+
 typedef bool boolean;
 
 class String : public std::string {
@@ -106,6 +111,10 @@ public:
 	template <typename T>
 	size_t println(T in);
 	void flush();
+	size_t write(char value);
+	size_t write(const char* buffer, size_t length);
+	int read();
+	size_t read(void* buffer, size_t length);
 	size_t readBytes(char* buffer, size_t length);
 	String readString(size_t length = 120);
 	size_t readBytesUntil(char terminator, char* buffer, size_t length, std::istream& stream = std::cin);
