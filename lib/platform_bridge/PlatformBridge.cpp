@@ -133,6 +133,22 @@ bool File::available() {
 void File::flush() {
 	this->stream.flush();
 }
+size_t File::write(char value) {
+	this->stream.put(value);
+	return this->stream.good() ? 1 : 0;
+}
+size_t File::write(const char* buffer, size_t length) {
+	this->stream.write(buffer, length);
+	return this->stream.good() ? length : 0;
+}
+int File::read() {
+	char* c = { '\0' };
+	this->readBytes(c, 1);
+	return static_cast<int>(c[0]);
+}
+size_t File::read(void* buffer, size_t length) {
+	return this->readBytes(buffer, length);
+}
 size_t File::readBytes(char* buffer, size_t length) {
 	size_t count = 0;
 	for (char c; count < length && this->stream.get(c); buffer[count++] = c);
