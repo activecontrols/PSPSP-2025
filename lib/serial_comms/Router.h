@@ -27,6 +27,8 @@ void info(const char *msg);
 void info_no_newline(const char *msg);
 inline void info(const std::string &msg) { info(msg.c_str()); }
 inline void info_no_newline(const std::string &msg) { info_no_newline(msg.c_str()); }
+inline void info(const String &msg) { info(msg.c_str()); }
+inline void info_no_newline(const String &msg) { info_no_newline(msg.c_str()); }
 
 // send sends raw bytes over the serial port. the caller is responsible for
 // freeing the memory of the message
@@ -49,10 +51,6 @@ void print_all_cmds();
 
 // reads a message from the serial port into a string and returns it
 String read(unsigned int len);
-#if defined(TARGET_TEENSY41)
-inline void info(const String &msg) { info(msg.c_str()); }
-inline void info_no_newline(const String &msg) { info_no_newline(msg.c_str()); }
-#endif
 
 }; // namespace Router
 
