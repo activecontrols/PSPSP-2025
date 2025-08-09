@@ -2,6 +2,7 @@
 #include "Router.h"
 
 #include "Loader.h"
+#include "TrajectoryFollower.h"
 
 void ping() {
   Router::info("pong");
@@ -21,12 +22,12 @@ void setup() {
 
   // Safety::begin();          // prints safety info
   // SPI_Demux::begin();       // initializes the SPI backplane
-  Loader::begin();          // registers data loader functions with the router
+  Loader::begin();             // registers data loader functions with the router
   // Driver::begin();          // initializes the odrives
   // ZucrowInterface::begin(); // initializes the DAC
   // PT::begin();              // initializes the PT Boards
   // TC::begin();              // initializes the TC Boards
-  // CurveFollower::begin();   // creates curve following commands
+  TrajectoryFollower::begin(); // creates curve following commands
   // ZucrowInterface::report_angles_for_five_seconds();
 }
 
