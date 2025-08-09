@@ -47,7 +47,7 @@ void followPositionLerpCurve() {
       float y_pos = lerp(lpc[i].y, lpc[i + 1].y, lpc[i].time, lpc[i + 1].time, seconds);
       float z_pos = lerp(lpc[i].z, lpc[i + 1].z, lpc[i].time, lpc[i + 1].time, seconds);
 
-      // TODO: Code to send lerped positions to Driver
+      // TODO: Code to send lerped positions to Driver (ignore this for now until Driver is added)
       // Driver::loxODrive.setPos(lox_pos);
       // Driver::ipaODrive.setPos(ipa_pos);
 
@@ -92,10 +92,9 @@ void arm() {
     return;
   }
 
-  // TODO: Add code to execute followPositionLerpCurve()
-  // Loader::header.is_thrust ? followThrustLerpCurve(lox_start, ipa_start) : followAngleLerpCurve();
+  followPositionLerpCurve();
 
-  Router::info("Finished following curve!");
+  Router::info("Finished following trajectory!");
   TrajectoryLogger::close_trajectory_log();
 }
 
