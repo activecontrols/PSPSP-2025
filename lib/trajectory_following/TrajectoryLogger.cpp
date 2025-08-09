@@ -21,6 +21,11 @@ void log_trajectory_csv(float time, int phase, float x, float y, float z) {
   positionLogFile.flush();
 
   print_counter++;
+  if (print_counter % 10 == 0) {
+    curveTelemCSV.clear();
+    curveTelemCSV << time << "  " << x << "  " << y << "  " << z;
+    curveTelemCSV.print();
+  }
 }
 
 // creates a log file for the current trajectory and prints csv header
