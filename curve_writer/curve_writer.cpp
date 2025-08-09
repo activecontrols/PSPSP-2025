@@ -7,6 +7,7 @@
 #include <fstream>
 #include <sstream>
 #include <cstring>
+#include <cstdint>
 
 #define ENABLE_SERIAL_COMMS false
 
