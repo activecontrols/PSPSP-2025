@@ -18,6 +18,10 @@ String::String(int value) {
   *this = std::to_string(value);
 }
 
+String::String(long int value) {
+  *this = std::to_string(value);
+}
+
 String::String(float value) {
   *this = std::to_string(value);
 }
