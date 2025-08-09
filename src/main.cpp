@@ -1,6 +1,8 @@
 #include "PlatformBridge.h"
 #include "Router.h"
 
+#include "TrajectoryFollower.h"
+
 void ping() {
   Router::info("pong");
 }
@@ -26,6 +28,8 @@ void setup() {
   // TC::begin();              // initializes the TC Boards
   // CurveFollower::begin();   // creates curve following commands
   // ZucrowInterface::report_angles_for_five_seconds();
+
+  TrajectoryFollower::begin(); // creates trajectory following commands
 }
 
 void loop() {
